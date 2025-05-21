@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants/product_constant.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
-import 'package:shop_app/screens/product_detail/product_detail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,7 +10,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final product = ProductConstant.productList[0];
     final theme = ThemeData(
       fontFamily: 'Roboto',
       colorScheme: const ColorScheme(
@@ -60,9 +57,6 @@ class MyApp extends StatelessWidget {
       useMaterial3: true,
     );
 
-    return MaterialApp(
-      theme: theme,
-      home: ProductDetailScreen(product: product),
-    );
+    return MaterialApp(theme: theme, home: const HomeScreen());
   }
 }

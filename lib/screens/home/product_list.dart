@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/constants/product_constant.dart';
+import 'package:shop_app/screens/product_detail/product_detail_screen.dart';
 import 'package:shop_app/ui/product_card.dart';
 
 class ProductList extends StatelessWidget {
@@ -18,10 +19,22 @@ class ProductList extends StatelessWidget {
           itemCount: productList.length,
           itemBuilder: (context, index) {
             final product = productList[index];
-            return ProductCard(
-              title: product['title'] as String,
-              price: product['price'].toString(),
-              imageUrl: product['imageUrl'] as String,
+            final productTitle = product['title'] as String;
+            final productPrice = product['price'].toString();
+            final productImageUrl = product['imageUrl'] as String;
+            return GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ProductDetailScreen(product: product),
+                  ),
+                );
+              },
+              child: ProductCard(
+                title: productTitle,
+                price: productPrice,
+                imageUrl: productImageUrl,
+              ),
             );
           },
         ),
