@@ -23,6 +23,10 @@ class MyApp extends StatelessWidget {
         surface: Colors.white,
         onSurface: Colors.black,
       ),
+      textTheme: TextTheme(
+        titleMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+        titleSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,

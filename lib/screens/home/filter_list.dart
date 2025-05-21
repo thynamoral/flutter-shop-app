@@ -14,7 +14,7 @@ class FilterList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 16, top: 32, bottom: 32),
+      padding: EdgeInsets.only(left: 16, top: 16, bottom: 16),
       child: SizedBox(
         width: double.infinity,
         height: 80,

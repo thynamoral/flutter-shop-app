@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/constants/product_constant.dart';
 import 'package:shop_app/screens/home/filter_list.dart';
+import 'package:shop_app/screens/home/product_list.dart';
+import 'package:shop_app/ui/product_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,6 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     'Balenciaga',
   ];
   late String selectedFilter;
+  final productList = ProductConstant.productList;
 
   @override
   void initState() {
@@ -52,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
             selectedFilter: selectedFilter,
             onSelectFilter: onSelectFilter,
           ),
+          ProductList(),
         ],
       ),
     );
