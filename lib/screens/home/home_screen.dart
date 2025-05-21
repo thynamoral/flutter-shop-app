@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/home/filter_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -8,6 +9,27 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final List<String> filterList = const [
+    'All',
+    'Adidas',
+    'Nike',
+    'Puma',
+    'Balenciaga',
+  ];
+  late String selectedFilter;
+
+  @override
+  void initState() {
+    super.initState();
+    selectedFilter = filterList[0];
+  }
+
+  void onSelectFilter(String targetFilter) {
+    setState(() {
+      selectedFilter = targetFilter;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,21 +38,20 @@ class _HomeScreenState extends State<HomeScreen> {
           height: 36,
           child: TextField(
             decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
               prefixIcon: Icon(Icons.search),
               hintText: 'Search',
-              contentPadding: EdgeInsets.symmetric(vertical: 6),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(24),
-                borderSide: BorderSide.none,
-              ),
             ),
           ),
         ),
         backgroundColor: Colors.black,
       ),
-      body: Column(children: [
+      body: Column(
+        children: [
+          FilterList(
+            filterList: filterList,
+            selectedFilter: selectedFilter,
+            onSelectFilter: onSelectFilter,
+          ),
         ],
       ),
     );

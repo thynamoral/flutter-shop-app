@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/screens/home_screen.dart';
+import 'package:shop_app/screens/home/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -23,16 +23,30 @@ class MyApp extends StatelessWidget {
         surface: Colors.white,
         onSurface: Colors.black,
       ),
-      useMaterial3: true,
-    ).copyWith(
+      inputDecorationTheme: InputDecorationTheme(
+        filled: true,
+        fillColor: Colors.white,
+        contentPadding: EdgeInsets.symmetric(vertical: 6),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(24),
+          borderSide: BorderSide.none,
+        ),
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.black,
           foregroundColor: Colors.white,
         ),
       ),
+      chipTheme: ChipThemeData(
+        padding: EdgeInsets.all(8),
+        elevation: 6,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+      ),
+      useMaterial3: true,
     );
 
-    return MaterialApp(theme: theme, home: HomeScreen());
+    return MaterialApp(theme: theme, home: const HomeScreen());
   }
 }
