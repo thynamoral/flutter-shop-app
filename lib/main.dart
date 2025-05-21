@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/constants/product_constant.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
+import 'package:shop_app/screens/product_detail/product_detail_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,6 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final product = ProductConstant.productList[0];
     final theme = ThemeData(
       fontFamily: 'Roboto',
       colorScheme: const ColorScheme(
@@ -23,14 +26,20 @@ class MyApp extends StatelessWidget {
         surface: Colors.white,
         onSurface: Colors.black,
       ),
-      textTheme: TextTheme(
+      textTheme: const TextTheme(
+        titleLarge: TextStyle(fontSize: 35, fontWeight: FontWeight.bold),
         titleMedium: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
         titleSmall: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        bodyLarge: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+      ),
+      appBarTheme: const AppBarTheme(
+        titleTextStyle: TextStyle(fontSize: 20, color: Colors.black),
+        centerTitle: true,
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,
-        contentPadding: EdgeInsets.symmetric(vertical: 6),
+        contentPadding: const EdgeInsets.symmetric(vertical: 6),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(24),
           borderSide: BorderSide.none,
@@ -46,11 +55,14 @@ class MyApp extends StatelessWidget {
         padding: EdgeInsets.all(8),
         elevation: 6,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-        labelStyle: TextStyle(fontWeight: FontWeight.bold),
+        labelStyle: const TextStyle(fontWeight: FontWeight.bold),
       ),
       useMaterial3: true,
     );
 
-    return MaterialApp(theme: theme, home: const HomeScreen());
+    return MaterialApp(
+      theme: theme,
+      home: ProductDetailScreen(product: product),
+    );
   }
 }
