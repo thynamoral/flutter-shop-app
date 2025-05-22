@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shop_app/constants/product_constant.dart';
-import 'package:shop_app/screens/home/filter_list.dart';
 import 'package:shop_app/screens/home/product_list.dart';
+import 'package:shop_app/screens/cart/cart_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -11,51 +10,29 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final List<String> filterList = const [
-    'All',
-    'Adidas',
-    'Nike',
-    'Puma',
-    'Balenciaga',
-  ];
-  late String selectedFilter;
-  final productList = ProductConstant.productList;
+  final List<Widget> screenList = const [ProductListHomePage(), CartScreen()];
+  int currentScreenIndex = 0;
 
-  @override
-  void initState() {
-    super.initState();
-    selectedFilter = filterList[0];
-  }
-
-  void onSelectFilter(String targetFilter) {
+  void onTapNavigationBar(int index) {
     setState(() {
-      selectedFilter = targetFilter;
+      currentScreenIndex = index;
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: SizedBox(
-          height: 36,
-          child: TextField(
-            decoration: InputDecoration(
-              prefixIcon: Icon(Icons.search),
-              hintText: 'Search',
-            ),
+      body: IndexedStack(index: currentScreenIndex, children: screenList),
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentScreenIndex,
+        onTap: (index) => onTapNavigationBar(index),
+        iconSize: 36,
+        items: [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_cart),
+            label: 'Cart',
           ),
-        ),
-        backgroundColor: Colors.black,
-      ),
-      body: Column(
-        children: [
-          FilterList(
-            filterList: filterList,
-            selectedFilter: selectedFilter,
-            onSelectFilter: onSelectFilter,
-          ),
-          ProductList(),
         ],
       ),
     );

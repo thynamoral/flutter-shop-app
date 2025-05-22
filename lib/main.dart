@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/providers/cart_provider.dart';
 import 'package:shop_app/screens/home/home_screen.dart';
 
 void main() {
@@ -57,6 +59,9 @@ class MyApp extends StatelessWidget {
       useMaterial3: true,
     );
 
-    return MaterialApp(theme: theme, home: const HomeScreen());
+    return ChangeNotifierProvider(
+      create: (context) => CartProvider(),
+      child: MaterialApp(theme: theme, home: const HomeScreen()),
+    );
   }
 }

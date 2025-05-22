@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:shop_app/providers/cart_provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   final Map<String, dynamic> product;
@@ -21,6 +23,14 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     setState(() {
       selectedSize = size;
     });
+  }
+
+  void onAddToCart() {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    cartProvider.addItemToCart(widget.product);
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Item added to cart')));
   }
 
   @override
@@ -99,7 +109,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                 ),
                 const Spacer(),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: onAddToCart,
                   child: SizedBox(
                     width: double.infinity,
                     child: Container(
